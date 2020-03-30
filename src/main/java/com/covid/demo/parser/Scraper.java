@@ -22,11 +22,10 @@ public class Scraper {
         client.getOptions().setUseInsecureSSL(true);
     }
 
-    public static String getMainNumberCounterByTotal() {
-        setup();
+    private static String getMainNumberCounterInfo(String Url) {
         String jsonStr = null;
         try {
-            HtmlPage page = client.getPage(baseUrl);
+            HtmlPage page = client.getPage(Url);
             List<HtmlElement> mainNumber = page.getByXPath("//div[@class='maincounter-number']");
             MainNumberCounter n1 = new MainNumberCounter();
             n1.setUuid(UUID.randomUUID());
@@ -57,6 +56,32 @@ public class Scraper {
             e.getMessage();
         }
         return jsonStr == null ? "Nothing found" : jsonStr;
+    }
+
+    public static String getCountryInfo() {
+        return null;
+    }
+
+    public static String getCityInfo() {
+        return null;
+    }
+
+    public static String getMainNumberCounterByCountry(String country) {
+        String url = baseUrl + "/country/" + country;
+        return getMainNumberCounterInfo(url);
+    }
+
+    public static String getMainNumberCounterByCity() {
+        setup();
+        String jsonStr = null;
+        return jsonStr;
+    }
+
+
+
+    public static String getMainNumberCounterByTotal() {
+        setup();
+        return getMainNumberCounterInfo(baseUrl);
     }
 
     private static Logger logger = Logger.getLogger(Scraper.class);
