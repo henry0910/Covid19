@@ -23,6 +23,7 @@ public class Scraper {
     }
 
     private static String getMainNumberCounterInfo(String Url) {
+        setup();
         String jsonStr = null;
         try {
             HtmlPage page = client.getPage(Url);
@@ -58,11 +59,11 @@ public class Scraper {
         return jsonStr == null ? "Nothing found" : jsonStr;
     }
 
-    public static String getCountryInfo() {
+    public static String getUsCityByName(String city) {
         return null;
     }
 
-    public static String getCityInfo() {
+    public static String getAllUsCityInfo() {
         return null;
     }
 
@@ -71,16 +72,9 @@ public class Scraper {
         return getMainNumberCounterInfo(url);
     }
 
-    public static String getMainNumberCounterByCity() {
-        setup();
-        String jsonStr = null;
-        return jsonStr;
-    }
-
-
 
     public static String getMainNumberCounterByTotal() {
-        setup();
+
         return getMainNumberCounterInfo(baseUrl);
     }
 
