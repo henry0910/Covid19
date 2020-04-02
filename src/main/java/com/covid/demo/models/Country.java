@@ -1,5 +1,8 @@
 package com.covid.demo.models;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Country {
     private Integer id;
     private String country;

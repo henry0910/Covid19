@@ -1,6 +1,6 @@
 package com.covid.demo.controllers;
 
-import com.covid.demo.service.CovidCountryDataService;
+import com.covid.demo.service.CovidUsStateDataService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CovidCountryDataController {
+public class CovidUsStateDataController {
 
-    @GetMapping("/countries")
-    public String getCountriesInfo(@Autowired @Qualifier("countryData") CovidCountryDataService covidCountryDataService) throws JsonProcessingException {
+    @GetMapping("/country/us/")
+    public String getStatesInfo(@Autowired @Qualifier("stateData" )CovidUsStateDataService covidUsStateDataService) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(covidCountryDataService.getCountryData());
+        return mapper.writeValueAsString(covidUsStateDataService.getStateList());
     }
-
-
 }
