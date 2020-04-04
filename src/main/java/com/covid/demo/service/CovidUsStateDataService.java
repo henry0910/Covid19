@@ -1,7 +1,6 @@
 package com.covid.demo.service;
 
 import com.covid.demo.models.State;
-import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,7 +32,7 @@ public class CovidUsStateDataService {
             for (Element element : rows) {
                 Elements eachStates = element.select("td");
                 if (eachStates == null || eachStates.size() < 6)  {
-                    logger.warn("This state record is null or incomplete");
+
                 } else {
                     State s1 = new State();
                     s1.setId(idx++);
@@ -55,5 +54,4 @@ public class CovidUsStateDataService {
         return this.stateList;
     }
 
-    private static Logger logger = Logger.getLogger(CovidUsStateDataService.class);
 }

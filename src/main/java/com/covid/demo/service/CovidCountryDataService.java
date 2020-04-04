@@ -1,7 +1,6 @@
 package com.covid.demo.service;
 
 import com.covid.demo.models.Country;
-import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,8 +32,8 @@ public class CovidCountryDataService {
             int idx = 0;
             for (Element row : rows) {
                 Elements eachCountry = row.select("td");
-                if (eachCountry == null || eachCountry.size() < 11) {
-                    logger.warn("The record is null or incomplete");
+                if (eachCountry == null || eachCountry.isEmpty()) {
+                    continue;
                 } else {
                     Country curr = new Country();
                     curr.setId(idx++);
@@ -48,7 +47,6 @@ public class CovidCountryDataService {
                     curr.setSeriesCases(eachCountry.get(7).text());
                     curr.setTotalCasesPerMillionPop(eachCountry.get(8).text());
                     curr.setTotalDeathsPerMillionPop(eachCountry.get(9).text());
-                    curr.setReportedFirstCase(eachCountry.get(10).text());
                     countryStats.add(curr);
                 }
             }
@@ -59,5 +57,4 @@ public class CovidCountryDataService {
         return this.countryList;
     }
 
-    private static Logger logger = Logger.getLogger(CovidCountryDataService.class);
 }
